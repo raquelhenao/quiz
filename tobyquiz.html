@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dachshund Quiz</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        color: #36bdf2;
+        position: relative;
+        overflow: hidden;
+        place-items: center;
+        text-align: center;
+        
+    }
+
+
+    button {
+        background: ghostwhite;
+        border: none;
+        color: inherit;
+        padding: 8px 16px;
+        transition: all 0.5s;
+    }
+
+    button:hover {
+        background: lavender;
+        cursor: pointer;
+        padding: 8px 24px;
+    }
+
+    button.clicked.correct {
+        background: rgb(33, 190, 138);
+        color: white;
+    }
+
+    button.clicked:not(.correct) {
+        background: rgb(207, 17, 68);
+        color: white;
+    }
+
+    .question {
+        display: none;
+    }
+
+    .question.active {
+        display: block;
+    }
+
+    .emoji {
+        position: absolute;
+        font-size: 3rem;
+        animation: fall 2s ease forwards;
+    }
+
+    .quiz-image {
+    margin-top: 15px;
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+    @keyframes fall {
+        0% {
+            transform: translateY(-100px);
+        }
+        100% {
+            transform: translateY(100vh); 
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <h1>Toby Quiz 🐶</h1>
+
+    <div class="question active">
+        <h2>What type of dog is Toby?</h2>
+        <button onclick="check(this)" class="correct">Dachshund</button>
+        <button onclick="check(this)">Poodle</button>
+        <button onclick="check(this)">Beagle</button>
+        <br>
+        <img src="toby1.jpg" alt="A cute dachshund" width="200" class="quiz-image">
+    </div>
+
+    <div class="question">
+        <h2>How old is Toby?</h2>
+        <button onclick="check(this)">5 years</button>
+        <button onclick="check(this)" class="correct">11 years</button>
+        <button onclick="check(this)">8 years</button>
+        <br>
+        <img src="toby2.jpg" width="200" class="quiz-image">
+
+    </div>
+
+    <div class="question">
+        <h2>Who is Toby's favorite family member?</h2>
+        <button onclick="check(this)">Mom</button>
+        <button onclick="check(this)">Raquel</button>
+        <button onclick="check(this)" class="correct">Dad</button>
+        <br>
+        <img src="toby3.jpg" width="200" class="quiz-image">
+    </div>
+
+    <div class="question">
+        <h2>What is Toby's favorite snack?</h2>
+        <button onclick="check(this)">Dog Treats</button>
+        <button onclick="check(this)">Tangerines</button>
+        <button onclick="check(this)" class="correct">Cheez its </button>
+        <br>
+        <img src="toby4.jpg" width="200" class="quiz-image">
+    </div>
+
+
+    <script>
+        function check(button) {
+            button.classList.add("clicked");
+
+            let question = button.closest('.question');
+            let buttons = question.querySelectorAll('button');
+
+            for (let btn of buttons) {
+                btn.disabled = true;
+            }
+
+            
+            if (button.classList.contains("correct")) {
+                const emojis = ['🐶', '🦴', '🐾']; 
+                const numberOfEmojis = 20; 
+
+                for (let i = 0; i < numberOfEmojis; i++) {
+                    const emoji = emojis[Math.floor(Math.random() * emojis.length)]; 
+                    const emojiElement = document.createElement('div');
+                    emojiElement.classList.add('emoji');
+                    emojiElement.textContent = emoji;
+
+                    
+                    emojiElement.style.left = `${Math.random() * 100}vw`; 
+                    emojiElement.style.top = `-100px`; 
+
+                    document.body.appendChild(emojiElement);
+
+                   
+                    setTimeout(() => {
+                        
+                        emojiElement.remove();
+                    }, 2000); 
+
+                    
+                    const dropDelay = i * 100; 
+                    setTimeout(() => {
+                        document.body.appendChild(emojiElement);
+                    }, dropDelay);
+                }
+            }
+
+            
+            let nextQuestion = question.nextElementSibling;
+            if (nextQuestion) {
+                setTimeout(() => {
+                    question.classList.remove("active");
+                    nextQuestion.classList.add("active");
+                }, 1000); 
+            }
+        }
+    </script>
+
+</body>
+</html>

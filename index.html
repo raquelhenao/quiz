@@ -4,11 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+
+    <style>
+    body {
+        font-family: sans-serif;
+        color: indigo;
+    }
+
+    button{
+        background: ghostwhite;
+        border: none;
+        color: inherit;
+        padding: 8px 16px;
+        transition: all 0.5s;
+    }
+
+    button:hover {
+        background: lavender;
+        cursor: pointer;
+        padding: 8px 24px;
+    }
+
+    button.clicked.correct {
+        background: turquoise;
+    }
+
+    button.clicked:not(.correct) {
+        background: deeppink;
+        color: white;
+    }
+    </style>
 </head>
 <body>
-    <button>Option A</button>
-    <button>Option B</button>
-    <button>Option C</button>
+
+    <h1>Raquel's Quiz!</h1>
+
+    <div class="question">
+
+    <h2>What is Raquel's favorite song off BRAT💚?</h2>
+
+    <button onclick="check(this)" class="correct">Girl, so confusing</button>
+    <button onclick="check(this)">Apple</button>
+    <button onclick="check(this)">Guess</button>
+
+    </div>
+
+    <div class="question">
+
+    <h2>What was Raquel's top artist in 2024?</h2>
+
+   
+    <button onclick="check(this)">Bad Bunny</button>
+    <button onclick="check(this)" class="correct">Lorde</button>
+    <button onclick="check(this)">Dominic Fike</button>
+
+    </div>
+
+    <script>
+        function check(button){
+            button.classList.add("clicked");
+           if(button.classList.contains("correct")) {
+               // button.style.background = "turquoise";
+            } else {
+             // button.style.background = "deeppink";
+               // button.style.color = "white";
+            } 
+
+            let question = button.closest('.question');
+            let buttons = question.querySelectorAll('button');
+
+            for (let button of buttons) {
+                button.disabled = true;
+            }
+        }
+    </script>
     
 </body>
 </html>
