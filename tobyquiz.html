@@ -6,6 +6,11 @@
     <title>Dachshund Quiz</title>
 
     <style>
+
+    h1 {
+        background-color: white;
+        display: inline-block;
+    }
     body {
         font-family: sans-serif;
         color: #36bdf2;
@@ -13,6 +18,9 @@
         overflow: hidden;
         place-items: center;
         text-align: center;
+        background-image: url('background.jpg');
+        background-size: cover;
+        
         
     }
 
@@ -23,6 +31,8 @@
         color: inherit;
         padding: 8px 16px;
         transition: all 0.5s;
+        background-color: white;
+        display: inline-block;
     }
 
     button:hover {
@@ -43,6 +53,7 @@
 
     .question {
         display: none;
+        
     }
 
     .question.active {
@@ -115,6 +126,27 @@
         <img src="toby4.jpg" width="200" class="quiz-image">
     </div>
 
+    <div class="question">
+        <h2>When is Toby's Birthday?</h2>
+        <button onclick="check(this)">April 7</button>
+        <button onclick="check(this)" class="correct">Feb 24</button>
+        <button onclick="check(this)">Nov 1 </button>
+        <br>
+        <img src="toby5.jpg" width="200" class="quiz-image">
+    </div>
+
+    <div class="question">
+        <h2>How cute is Toby</h2>
+        <button onclick="check(this)">a little cute</button>
+        <button onclick="check(this)" class="correct">the CUTEST</button>
+        <button onclick="check(this)">kinda cute</button>
+        <br>
+        <img src="toby6.jpg" width="200" class="quiz-image">
+
+    </div>
+
+    
+
 
     <script>
         function check(button) {
@@ -137,7 +169,6 @@
                     const emojiElement = document.createElement('div');
                     emojiElement.classList.add('emoji');
                     emojiElement.textContent = emoji;
-
                     
                     emojiElement.style.left = `${Math.random() * 100}vw`; 
                     emojiElement.style.top = `-100px`; 
